@@ -1,14 +1,14 @@
 import numpy as np
 import random
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 
 # initial setup
 figures = np.array(["R", "P", "S"])
 choices_as_numbers = np.array([0, 1, 2])
 
 # occurences matrix determines how many times given figure occured after the other
-# also we can use probabilities here instead of occurences to make our model more
-# adaptive in longer games. this version makes it `remember` patterns for longer at the
-# cost of its adaptiveness.
+# also we can use probabilities here instead of occurences.
 # initial numbers are purely random
 occurrences_matrix = np.array([[3, 3, 3], [3, 3, 3], [3, 3, 3]])
 
@@ -17,6 +17,7 @@ PLAYER_2 = "bot"
 is_game_running = True
 previous_choice = 0
 total_score = 0
+score_list = []
 counter = 0
 
 # function that converts user input to `int` representing given figure
@@ -71,9 +72,13 @@ while(is_game_running):
     counter += 1
 
     total_score += score
+    score_list.append(total_score)
 
-    if counter >= 3:
+    if counter >= 10:
         is_game_running = False
 
-print("Final bot score:", total_score)
-print(occurrences_matrix)
+plt.plot(score_list)
+plt.grid(True)
+plt.ylabel("bot's score")
+plt.xlabel("game no.")
+plt.show()
