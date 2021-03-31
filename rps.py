@@ -77,13 +77,8 @@ while(is_game_running):
     if counter >= 10:
         is_game_running = False
 
-<<<<<<< HEAD
 plt.plot(score_list)
 plt.grid(True)
 plt.ylabel("bot's score")
 plt.xlabel("game no.")
 plt.show()
-=======
-print("Final bot score:", total_score)
-print(occurrences_matrix)
->>>>>>> 78a88c9aef9697f2a0d95dc662945ced730d4658
