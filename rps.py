@@ -40,7 +40,7 @@ def make_prediction(previous_player_choice):
     prob = [0.0, 0.0, 0.0]
 
     for index in range(3):
-        prob[index] = occurrences_matrix[previous_choice][index] / np.sum(occurrences_matrix[previous_player_choice])
+        prob[index] = occurrences_matrix[previous_player_choice][index] / np.sum(occurrences_matrix[previous_player_choice])
     
     return np.random.choice(choices_as_numbers, replace=True, p=prob)
 
@@ -77,8 +77,13 @@ while(is_game_running):
     if counter >= 10:
         is_game_running = False
 
+<<<<<<< HEAD
 plt.plot(score_list)
 plt.grid(True)
 plt.ylabel("bot's score")
 plt.xlabel("game no.")
 plt.show()
+=======
+print("Final bot score:", total_score)
+print(occurrences_matrix)
+>>>>>>> 78a88c9aef9697f2a0d95dc662945ced730d4658
