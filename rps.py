@@ -6,9 +6,7 @@ figures = np.array(["R", "P", "S"])
 choices_as_numbers = np.array([0, 1, 2])
 
 # occurences matrix determines how many times given figure occured after the other
-# also we can use probabilities here instead of occurences to make our model more
-# adaptive in longer games. this version makes it `remember` patterns for longer at the
-# cost of its adaptiveness.
+# also we can use probabilities here instead of occurences.
 # initial numbers are purely random
 occurrences_matrix = np.array([[3, 3, 3], [3, 3, 3], [3, 3, 3]])
 
