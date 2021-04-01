@@ -42,12 +42,13 @@ def make_prediction(previous_player_choice):
     for index in range(3):
         prob[index] = occurrences_matrix[previous_player_choice][index] / np.sum(occurrences_matrix[previous_player_choice])
     
-    return np.random.choice(choices_as_numbers, replace=True, p=prob)
+    return choices_as_numbers[(np.random.choice(choices_as_numbers, replace=True, p=prob) + 1) % 3]
 
 # main game loop
 while(is_game_running):
     choice = input("Input your choice: ")
-    
+    choice = "P"
+
     player_choice = convert_figure_to_number(choice)
     bot_choice = make_prediction(previous_choice)
 
@@ -64,9 +65,7 @@ while(is_game_running):
     
     print(winner)
 
-    # line of code responsible for learning
-    if (winner == PLAYER_1 and counter != 0):
-        occurrences_matrix[previous_choice][player_choice] = occurrences_matrix[previous_choice][player_choice] + 1
+    occurrences_matrix[previous_choice][player_choice] += 1
 
     previous_choice = player_choice
     counter += 1
@@ -74,9 +73,10 @@ while(is_game_running):
     total_score += score
     score_list.append(total_score)
 
-    if counter >= 10:
+    if counter >= 20:
         is_game_running = False
 
+print(occurrences_matrix)
 plt.plot(score_list)
 plt.grid(True)
 plt.ylabel("bot's score")
